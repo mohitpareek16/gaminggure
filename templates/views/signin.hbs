@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameGuru</title>
+    <link rel="stylesheet" href="css/signin.css">
+</head>
+<body>
+    <nav class="nav-top">
+        <div class="nav-left">
+            <img src="/images final/logo.png" alt="">
+            <div><a href="/">GAMER GURU</a></div>
+        </div>
+    </nav>
+    <section class="signup">
+        <div class="form">
+            <h1>
+                SIGN UP FOR <span>GAMER GURU</span> 
+            </h1>
+            <h2>CREATE AN ACCOUNT TO SCHEDULE YOUR FIRST LESSON.</h2>
+            
+            <div class="form-input">
+                <form action="/signin" method="POST">
+                <div class="email">
+                    <label id="emaill" >Email Address</label><br>
+                    <input type="email" name="email" id="email" >
+                </div>
+                <div class="username">
+                    <label id="userr" >Username</label><br>
+                    <input type="text" name="username" id="user" >
+                </div>
+                <div class="password">
+                    <label id="passs" >Password (at least 8 characters)</label><br>
+                    <input type="password" name="password" id="pass" >
+                </div>
+                <div class="checkbox-1 checkbox" id="checkbox">
+                    <input type="checkbox" name="terms" id="box1">
+                    <label>I agree to Gamer Guru's Terms of Conditions and Privacy Policy, am 13<br> years of age or older.</label>
+                </div>
+                <div class="checkbox-2 checkbox">
+                    <input type="checkbox" name="notifications" id="box2">
+                    <label>I would like to receive email updates and promotions from Gamer Guru. </label>
+                </div>
+                <div class="submit">
+                    <input type="submit" name="submit" value="SIGN UP">
+                </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="footer-logo"><img src="/images final/logo.png" alt=""></div>
+        <div class="footer-text">GAMER GURU</div>
+        <div class="footer-copyright">© 2022 Gamer Sensei. All Rights Reserved.</div>
+    </footer>
+    <script type="text/javascript">
+        function validation() {
+            var email = document.getElementById('email').value;
+            var pass = document.getElementById('pass').value;
+            var user = document.getElementById('user').value;
+            var box1 = document.getElementById('box1').value;
+            var box2 = document.getElementById('box2').value;
+            if (user.length < 2) {
+                document.getElementById('userr').innerHTML = "User Name must be Valid";
+            }
+            if (pass == "") {
+                document.getElementById('passs').innerHTML = "Password is missing";
+            }else{
+                console.log("error")
+            }
+            if (pass.search(/[0-9]/ == -1)) {
+                document.getElementById('passs').innerHTML = "Password must be contain a number";
+            }else{
+                console.log("error")
+            }
+            if (pass.search(/[a-z]/ == -1)) {
+                document.getElementById('passs').innerHTML = "Password must be contain a Lower case character";
+            }
+            else {
+                console.log("error")
+            }
+            if (pass.search(/[A-Z]/ == -1)) {
+                document.getElementById('passs').innerHTML = "Password must be contain a Upper case character";
+            }
+            else {
+                console.log("error")
+            }
+            if (pass.length < 8) {
+                document.getElementById('passs').innerHTML = "Password must be of 8 character";
+            }
+            else {
+                console.log("error")
+            }
+            if (email == "") {
+                document.getElementById('emaill').innerHTML = "Email is missing";
+            }
+            else {
+                console.log("error")
+            }
+            console.log("clicking is working");
+            
+        }
+    </script>
+</body>
+</html>
