@@ -1,90 +1,78 @@
-<!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GameGuru</title>
-    <link rel="stylesheet" href="css/login.css">
-</head>
+    <link rel="stylesheet" href="css/login.css" />
+  </head>
 
-<body>
+  <body>
     <nav class="nav-top">
-        <div class="nav-left">
-            <img src="/images final/logo.png" alt="">
-            <div><a href="/">GAMER GURU</a></div>
-        </div>
+      <div class="nav-left">
+        <img src="/images final/logo.png" alt="" />
+        <div><a href="/">GAMER GURU</a></div>
+      </div>
     </nav>
     <section class="signup">
-        <div class="form">
-            <h1>
-                LOG IN TO <span>GAMER GURU</span>
-            </h1>
+      <div class="form">
+        <h1>
+          LOG IN TO
+          <span>GAMER GURU</span>
+        </h1>
 
-            <div class="form-input">
-                <form action="/login" method="POST">
-                    <div class="email">
-                        <label id="emaill">Email Address</label><br>
-                        <input type="email" id="email" name="email">
-                    </div>
-
-                    <div class="password">
-                        <label id="passs">Password (at least 8 characters)</label><br>
-                        <input class="input-box2" type="password" id="pass" name="password">
-                    </div>
-
-                    <div class="checkbox-1 checkbox" id="checkbox">
-                        <input type="checkbox" name="terms">
-                        <label>I agree to Gamer Guru's Terms of Conditions and Privacy Policy, and am 13<br> years of
-                            age or older.</label>
-                    </div>
-                    <div class="checkbox-2 checkbox">
-                        <input type="checkbox" name="notifications">
-                        <label>I would like to receive email updates and promotions from Gamer Guru. </label>
-                    </div>
-                    <div class="submit">
-                        <input type="submit" name="submit" value="login" onclick="return validation()">
-                    </div>
-                </form>
+        <div class="form-input">
+          <form id="loginForm" action="/auth/signin" method="POST">
+            <div class="email">
+              <label>Email Address</label><br />
+              <input type="email" name="email" id="emailInput" />
             </div>
+            <div class="password">
+              <label>Password</label><br />
+              <input type="password" name="password" id="passwordInput" />
+            </div>
+            <div class="submit">
+              <input type="submit" value="LOGIN" />
+            </div>
+          </form>
         </div>
+      </div>
     </section>
     <footer>
-        <div class="footer-logo"><img src="/images final/logo.png" alt=""></div>
-        <div class="footer-text">GAMER GURU</div>
-        <div class="footer-copyright">© 2022 Gamer Sensei. All Rights Reserved.</div>
+      <div class="footer-logo"><img src="/images final/logo.png" alt="" /></div>
+      <div class="footer-text">GAMER GURU</div>
+      <div class="footer-copyright">© 2022 Gamer Sensei. All Rights Reserved.</div>
     </footer>
-    <script type="text/javascript">
-        function validation() {
-            var email = document.getElementById('email').value;
-            var pass = document.getElementById('pass').value;
 
-            if (pass == "") {
-                document.getElementById('passs').innerHTML = "Password is missing";
-            }
-            if (pass.search(/[0-9]/ == -1)) {
-                document.getElementById('passs').innerHTML = "Password must be contain a number";
-            }
-            if (pass.search(/[a-z]/ == -1)) {
-                document.getElementById('passs').innerHTML = "Password must be contain a Lower case character";
-            }
-            if (pass.search(/[A-Z]/ == -1)) {
-                document.getElementById('passs').innerHTML = "Password must be contain a Upper case character";
-            }
-            if (pass.length < 8) {
-                document.getElementById('passs').innerHTML = "Password must be of 8 character";
-            }
-            if (email == "") {
-                document.getElementById('emaill').innerHTML = "Email is missing";
-            }
+    <script>
+      document.getElementById("loginForm").addEventListener("submit", async function(event) {
+        event.preventDefault(); // Prevent the form from submitting normally
+    
+        const email = document.getElementById("emailInput").value;
+        const password = document.getElementById("passwordInput").value;
+        
+    
+        try {
+          const response = await fetch("/auth/signin", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ email, password })
+          });
+    
+          if (response.ok) {
+            window.location.href = "/";
+          } else {
+            const error = await response.text();
+            console.log("Login failed:", error);
+          }
+        } catch (error) {
+          console.log("An error occurred:", error);
         }
-        function myFunction() {
-            var x = document.querySelectorAll("input");
-            x[0].style.setProperty("background-color", "white", "important");
-        }
-
+      });
     </script>
-</body>
+  </body>
 
 </html>

@@ -258,6 +258,7 @@ ul li:hover {
     border-radius: 10px;
     font-size: 19px;
     font-size: 1.2rem;
+    margin-bottom: -6rem !important;
     color: #fff;
     cursor: pointer;
     position: absolute;
@@ -359,7 +360,7 @@ ul li:hover {
 
 .credit-card-image {
     display: block;
-    max-height: 80px;
+    max-height: auto;
     margin-left: auto;
     margin-right: auto;
     margin-top: 35px;

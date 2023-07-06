@@ -19,8 +19,16 @@
             <li class="nav-centre"><a href="/cart">Cart <span>0</span></a></li>
         </ul>
         <div class="nav-right">
-            <button id="login"><a class="lclick" href="/login">LOG IN</a></button>
-            <button id="signup"><a class="sclick" href="/signin">SIGN UP</a></button>
+            {{#if loggedIn}}
+            <div class="nav-right">
+              <button id="logout" onclick={logoutUser}><a class="lclick" >LOG OUT</a></button>
+            </div>
+          {{else}}
+            <div class="nav-left">
+                <button id="login"><a class="lclick" href="/login">LOG IN</a></button>
+                <button id="signup"><a class="sclick" href="/signin">SIGN UP</a></button>
+            </div>
+          {{/if}}
         </div>
     </nav>
 
@@ -39,7 +47,7 @@
                 anim id est laborum.
             </p>
             <h2 class="price">$200</h2>
-            <button class="signup"><a class="add-cart lclick" >ADD TO CART</a></button>
+            <button class="signup"><a class="add-cart lclick" href="/payment">ADD TO CART</a></button>
             </div>
         </div>
         <div class="card">
@@ -56,7 +64,7 @@
                     anim id est laborum.
                 </p>
                 <h2 class="price">$100</h2>
-                <button class="signup"><a class="add-cart lclick">ADD TO CART</a></button>
+                <button class="signup"><a href="/payment" class="add-cart lclick">ADD TO CART</a></button>
             </div>
         </div>
     </section>
@@ -76,6 +84,7 @@
         <div class="footer-copyright">© 2022 Gamer Sensei. All Rights Reserved.</div>
     </footer>
     <script src="js/cart.js"></script>
+        <script src="js/logout.js"></script>
 </body>
 
 </html>
