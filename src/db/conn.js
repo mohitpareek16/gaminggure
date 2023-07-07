@@ -14,7 +14,7 @@ const crypto = require("crypto");
 mongoose.set("strictQuery", false);
 
 mongoose
-  .connect("mongodb://localhost:27017/GameGuru", {
+  .connect("mongodb+srv://devraj:96805577733@cluster0.b5bzbm5.mongodb.net/?retryWrites=true&w=majority", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
