@@ -63,6 +63,7 @@
           });
     
           if (response.ok) {
+            window.alert("Login successful!");
             window.location.href = "/";
           } else {
             const error = await response.text();

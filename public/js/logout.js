@@ -6,7 +6,9 @@ const logoutUser = () => {
       if (response.ok) {
         // Successful logout, redirect to the home page or perform any other desired action
         console.log("Logout successful");
+        window.alert("Logout successful");
         window.location.href = "/";
+        sessionStorage.clear();
       } else {
         return response.text().then((error) => {
           console.log("Logout failed:", error);

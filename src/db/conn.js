@@ -4,13 +4,6 @@ const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
 const crypto = require("crypto");
 
-// const generateSecretKey = () => {
-//   return crypto.randomBytes(32).toString("hex");
-// };
-
-// const secretKey = generateSecretKey();
-// console.log(secretKey);
-
 mongoose.set("strictQuery", false);
 
 mongoose

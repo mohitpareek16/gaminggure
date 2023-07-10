@@ -14,7 +14,7 @@ const signUp = async (req, res) => {
     await signinUser.save();
     console.log(signinUser);
 
-    res.status(201).render("./login");
+    res.status(201).redirect("/login");
   } catch (error) {
     res.status(400).send(error);
   }
