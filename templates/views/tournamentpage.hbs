@@ -181,9 +181,12 @@
           })
           .then(function(data) {
             console.log(data);
+            window.alert("created successfully")
+            window.location.reload()
     
           })
           .catch(function(error) {
+            window.alert(error)
             console.error(error);
           });
         });

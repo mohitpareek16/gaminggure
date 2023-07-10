@@ -97,6 +97,8 @@
             window.location.href = "/login";
           } else {
             const error = await response.text();
+            window.alert("some error occurred!!");
+
             console.log("Login failed:", error);
           }
         } catch (error) {

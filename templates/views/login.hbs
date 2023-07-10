@@ -63,11 +63,13 @@
           });
     
           if (response.ok) {
+            console.log(response)
             window.alert("Login successful!");
             window.location.href = "/";
           } else {
             const error = await response.text();
-            console.log("Login failed:", error);
+            window.alert(error);
+
           }
         } catch (error) {
           console.log("An error occurred:", error);
