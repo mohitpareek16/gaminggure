@@ -37,7 +37,9 @@ app.use(
 );
 
 app.get("/", (req, res) => {
+
   const isAuthenticated = req.session.userId ? true : false;
+  console.log(req.session.user,"isauthenticated")
 
   res.render("index",{ isAuthenticated });
 });
@@ -55,6 +57,7 @@ app.get("/signin", (req, res) => {
 });
 app.get("/tournamentpage", (req, res) => {
   if (!req.session.userId) {
+
     res.redirect('/login');
   } else {
     res.render('tournamentpage');
@@ -64,6 +67,7 @@ app.get("/tournamentpage", (req, res) => {
 
 app.get("/cart", (req, res) => {
   if (!req.session.userId) {
+
     res.redirect('/login');
   } else {
     res.render('cart');
@@ -82,6 +86,7 @@ app.get("/payment", (req, res) => {
     const isAuthenticated = req.session.userId ? true : false;
 
     res.render('payment',{ isAuthenticated });
+
   }
 });
 
