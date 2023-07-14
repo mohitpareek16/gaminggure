@@ -33,7 +33,8 @@ const signIn = async (req, res) => {
     if (user.password !== password) {
       return res.status(401).send("Password is incorrect");
     }
-
+    console.log(user)
+    localStorage.setItem("user",user)
     req.session.userId = user._id;
     res.locals.loggedIn = true;
     res.redirect("/"); // Redirect to the home page
