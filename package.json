@@ -2,7 +2,7 @@
   "name": "gameguru",
   "version": "1.0.0",
   "description": "",
-  "main": "src/app.js ",
+  "main": "src/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon src/app.js -e js,hbs"
@@ -11,11 +11,17 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.0",
+    "body-parser": "^1.20.2",
+    "connect-mongo": "^5.0.0",
     "connect-mongodb-session": "^3.1.1",
-    "express": "^4.18.1",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-handlebars": "^7.0.7",
     "express-session": "^1.17.3",
     "hbs": "^4.2.0",
-    "mongoose": "^6.3.3",
+    "mongoose": "^6.11.3",
+    "nodemailer": "^6.9.3",
     "nodemon": "^2.0.16"
   }
 }

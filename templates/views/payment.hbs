@@ -59,6 +59,8 @@
                             <input id="card_holder" name="card_holder" type="text" class='input-field'></input>
                             Phone Number
                             <input id="phone_number" name="phone_number" type="number" class='input-field'></input>
+                            Email
+                            <input id="email" name="email" type="email" class='input-field'></input>
                             Amount
                             <input id="amount" name="amount" type="number" class='input-field'></input>
                            
@@ -99,11 +101,13 @@
               var expires = document.getElementById('expires').value;
               var cvc = document.getElementById('cvc').value;
               var amount = document.getElementById('amount').value;
+              var email = document.getElementById('email').value;  
           
               var paymentData = {
                 card_number: card_number,
                 card_holder: card_holder,
                 phone_number: phone_number,
+                email: email,
                 expires: expires,
                 cvc: cvc,
                 amount: amount,
@@ -131,7 +135,7 @@
                   console.error(error);
                 })
                 .finally(function () {
-
+                  window.alert("Payment Successful");
                   window.location.href = '/'; 
                 });
             });

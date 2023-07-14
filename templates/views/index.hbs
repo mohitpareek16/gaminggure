@@ -22,13 +22,16 @@
 
       <div class="nav-right">
         <div class="nav-left">
-          <button id="loginButton" class="lclick"><a href="/login">LOG IN</a></button>
+          {{#if isAuthenticated}}
+            <button id="logoutButton" onclick="{logoutUser}" class="loclick">Log
+              Out
+            </button>
 
-          <button id="signupButton" class="sclick"><a href="/signin">SIGN UP</a></button>
+          {{else}}
+            <button id="loginButton" class="lclick"><a href="/login">LOG IN</a></button>
 
-          <button id="logoutButton" onclick="{logoutUser}" class="loclick">
-           Log Out
-          </button>
+            <button id="signupButton" class="sclick"><a href="/signin">SIGN UP</a></button>
+          {{/if}}
         </div>
       </div>
     </nav>

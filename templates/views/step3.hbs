@@ -19,16 +19,11 @@
             <li class="nav-centre"><a href="/cart">Cart <span>0</span></a></li>
         </ul>
         <div class="nav-right">
-            {{#if loggedIn}}
             <div class="nav-right">
               <button id="logout" onclick={logoutUser}><a class="lclick" >LOG OUT</a></button>
+              <button id="login"><a class="lclick" href="/login">LOG IN</a></button>
+              <button id="signup"><a class="sclick" href="/signin">SIGN UP</a></button>
             </div>
-          {{else}}
-            <div class="nav-left">
-                <button id="login"><a class="lclick" href="/login">LOG IN</a></button>
-                <button id="signup"><a class="sclick" href="/signin">SIGN UP</a></button>
-            </div>
-          {{/if}}
         </div>
     </nav>
 

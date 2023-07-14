@@ -2,7 +2,7 @@ function validation() {
   var email = document.getElementById("email").value;
   var pass = document.getElementById("pass").value;
   if (pass == "") {
-    document.getElementById("passs").innerHTML = "Password is missing";
+    document.getElementById("pass").innerHTML = "Password is missing";
   }
 
   if (email == "") {
