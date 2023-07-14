@@ -22,8 +22,25 @@ app.set("view engine", "hbs");
 app.set("views", template_path);
 hbs.registerPartials(partials_path);
 
+const generateSecretKey = () => {
+  return crypto.randomBytes(32).toString("hex");
+};
+const secretKey = generateSecretKey();
+console.log(secretKey);
+
+app.use(
+  session({
+    secret: secretKey,
+    resave: false,
+    saveUninitialized: true,
+  })
+);
+
 app.get("/", (req, res) => {
-  res.render("index");
+  const isAuthenticated = req.session.user ? true : false;
+  console.log(req.session.user,"isauthenticated")
+
+  res.render("index",{ isAuthenticated });
 });
 
 app.get("/login", (req, res) => {
@@ -37,40 +54,43 @@ app.get("/signin", (req, res) => {
   res.render("signin");
 });
 app.get("/tournamentpage", (req, res) => {
-  res.render("tournamentpage");
+  if (!req.session.user) {
+    res.redirect('/login');
+  } else {
+    res.render('tournamentpage');
+  }
+
 });
 
 app.get("/cart", (req, res) => {
-  res.render("cart");
-});
+  if (!req.session.user) {
+    res.redirect('/login');
+  } else {
+    res.render('cart');
+  }});
 
 app.get("/step3", (req, res) => {
   res.render("step3");
 });
 
 app.get("/payment", (req, res) => {
-  res.render("payment");
+  if (!req.session.user) {
+    res.redirect('/login');
+  } else {
+    res.render('payment');
+  }
 });
 
 ///////////////////////////////////////////////
 //                Middelwaire               //
 /////////////////////////////////////////////*/
 
-const generateSecretKey = () => {
-  return crypto.randomBytes(32).toString("hex");
-};
 
-const secretKey = generateSecretKey();
-console.log(secretKey);
+
+
 
 // Set up session middleware
-app.use(
-  session({
-    secret: secretKey,
-    resave: false,
-    saveUninitialized: true,
-  })
-);
+
 
 app.use(authRouter);
 app.use(tornamentRouter);

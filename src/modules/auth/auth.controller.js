@@ -1,42 +1,51 @@
 const UserModel = require("./auth.models");
+const exphbs = require('express-handlebars');
+const mongoose = require('mongoose');
+const session = require('express-session');
+const bcrypt = require('bcrypt');
+
 
 const signUp = async (req, res) => {
   try {
-    console.log(req.body);
-    const { email, password, username } = req.body;
+    const { email, username, password } = req.body;
+  const saltRounds = 10;
+  const hashedPassword = await bcrypt.hash(password, saltRounds);
+  const user = new UserModel({ email, username, password: hashedPassword });
+  user.save((err) => {
+    if (err) {
+      console.error(err);
+      res.render('signup', { error: 'Error signing up. Please try again.' });
+    } else {
+      res.redirect('/login');
+    }
+  });
 
-    const signinUser = new UserModel({
-      username: username,
-      email: email,
-      password: password,
-    });
-
-    await signinUser.save();
-    console.log(signinUser);
-
-    res.status(201).redirect("/login");
   } catch (error) {
     res.status(400).send(error);
+    console.log(error)
   }
 };
 
 const signIn = async (req, res) => {
   try {
     const { email, password } = req.body;
-    console.log(req.body);
-    const user = await UserModel.findOne({ email });
-
-    if (!user) {
-      return res.status(404).send("User not found");
+    UserModel.findOne({ email }, async (err, user) => {
+    if (err) {
+      console.error(err);
+      res.status(401).render('login', { error: 'Error logging in. Please try again.' });
+    } else if (!user) {
+      res.status(401).render('login', { error: 'Invalid username or password.' });
+    } else {
+      const match = await bcrypt.compare(password, user.password);
+      if (match) {
+        req.session.user = user;
+        res.status(200).redirect('/');
+      } else {
+        res.status(401).render('login', { error: 'Invalid username or password.' });
+      }
     }
+  });
 
-    if (user.password !== password) {
-      return res.status(401).send("Password is incorrect");
-    }
-
-    req.session.userId = user._id;
-    res.locals.loggedIn = true;
-    res.redirect("/"); // Redirect to the home page
   } catch (error) {
     console.log("An error occurred:", error);
     res.status(500).send("Internal Server Error");
@@ -46,7 +55,7 @@ const signIn = async (req, res) => {
 const logOut = async (req, res) => {
   try {
     req.session.destroy();
-    res.redirect("/");
+    res.redirect('/');  
   } catch (error) {
     console.log("An error occurred:", error);
     res.status(500).send("Internal Server Error");

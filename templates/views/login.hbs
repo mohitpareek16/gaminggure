@@ -22,6 +22,11 @@
           <span>GAMER GURU</span>
         </h1>
 
+        {{#if error}}
+<p style="color: red;">{{error}}</p>
+{{/if}}
+
+
         <div class="form-input">
           <form id="loginForm" action="/auth/signin" method="POST">
             <div class="email">
@@ -73,7 +78,7 @@
           }
         } catch (error) {
           console.log("An error occurred:", error);
-        }
+        } 
       });
     </script>
   </body>
