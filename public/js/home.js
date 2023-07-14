@@ -4,6 +4,9 @@ const nextbutton = document.querySelector(".next");
 const prevbutton = document.querySelector(".previous");
 const dashnav = document.querySelector(".navigation-box");
 const dash = Array.from(dashnav.children);
+const select1 = document.getElementById("slct1")
+// const select1 = document.getElementById("slct1")
+// const select1 = document.getElementById("slct1")
 
 var s = document.getElementsByClassName("step2");
 s.disabled = true;
@@ -145,22 +148,72 @@ function populate2(s1, s2) {
 function SelectRedirect() {
   // ON selection of section this function will work
   //alert( document.getElementById('s1').value);
+  let data = JSON.parse(localStorage.getItem('productInCart')?localStorage.getItem('productInCart'):'[]')
+
 
   switch (document.getElementById("slct3").value) {
     case "LEGENDARY":
-      window.location = "/step3";
-      break;
+      
+        if(data){
+          const obj={
+            tag: select1.value,
+            name: "LEGENDARY",
+            price: 200,
+            inCart: 1
+            
+          }
+          data.push(obj)
+          localStorage.setItem('productInCart',JSON.stringify(data))
+          window.location.href = "/step3";
+      }
+        break;
+      
+    
 
     case "EXPERT":
-      window.location = "/step3";
+      if(data){
+        const obj={
+          tag: select1.value,
+          name: "EXPERT",
+          price: 200,
+          inCart: 1
+          
+        }
+        data.push(obj)
+        localStorage.setItem('productInCart',JSON.stringify(data))
+        window.location.href = "/step3";
+    }
+      break;
       break;
 
     case "ADVANCED":
-      window.location = "/step3";
+      if(data){
+        const obj={
+          tag: select1.value,
+          name: "ADVANCED",
+          price: 200,
+          inCart: 1
+          
+        }
+        data.push(obj)
+        localStorage.setItem('productInCart',JSON.stringify(data))
+        window.location.href = "/step3";
+    }
       break;
     case "STANDARD":
-      window.location = "/step3";
-      break;
+        if(data){
+          const obj={
+            tag: select1.value,
+            name: "STANDARD",
+            price: 200,
+            inCart: 1
+            
+          }
+          data.push(obj)
+          localStorage.setItem('productInCart',JSON.stringify(data))
+          window.location.href = "/step3";
+      }
+        break;
 
     /// Can be extended to other different selections of SubCategory //////
     default:

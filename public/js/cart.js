@@ -39,7 +39,7 @@ function cartNumbers(product) {
     localStorage.setItem("cartNumbers", 1);
     document.querySelector(".nav-centre span").textContent = 1;
   }
-  setItem(product);
+  // setItem(product);
 }
 
 function setItem(product) {
@@ -60,7 +60,7 @@ function setItem(product) {
     };
   }
 
-  localStorage.setItem("productInCart", JSON.stringify(cartItems));
+  // localStorage.setItem("productInCart", JSON.stringify(cartItems));
 }
 
 function totalCost(product) {
@@ -77,52 +77,35 @@ function totalCost(product) {
 function displayCart() {
   let cartItems = localStorage.getItem("productInCart");
   cartItems = JSON.parse(cartItems);
-  let productContainer = document.querySelector(".products");
+  let productContainer = document.querySelector(".card_section");
   let cartCost = localStorage.getItem("totalCost");
 
   if (cartItems && productContainer) {
     productContainer.innerHTML = ``;
-    Object.values(cartItems).map((item) => {
-      productContainer.innerHTML += `
-            
-                 <div class="product" >
-                    <svg class="icons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256zM175 208.1L222.1 255.1L175 303C165.7 312.4 165.7 327.6 175 336.1C184.4 346.3 199.6 346.3 208.1 336.1L255.1 289.9L303 336.1C312.4 346.3 327.6 346.3 336.1 336.1C346.3 327.6 346.3 312.4 336.1 303L289.9 255.1L336.1 208.1C346.3 199.6 346.3 184.4 336.1 175C327.6 165.7 312.4 165.7 303 175L255.1 222.1L208.1 175C199.6 165.7 184.4 165.7 175 175C165.7 184.4 165.7 199.6 175 208.1V208.1z"/></svg>
-                    <img class="spacebtw"  src="./images/${item.tag}.png">
-                    <span>${item.name}</span>
-                 </div>
-                 <div class="price spacebtw">
-                    ${item.price}
-                 </div>
-                 <div class="quantity spacebtw">
-                    <svg  class="icons"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M400 288h-352c-17.69 0-32-14.32-32-32.01s14.31-31.99 32-31.99h352c17.69 0 32 14.3 32 31.99S417.7 288 400 288z"/>
-                   
-                    </svg>
-                    <span> 
-                        ${item.inCart}
-                    </span>
-                    <svg class="icons" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M432 256c0 17.69-14.33 32.01-32 32.01H256v144c0 17.69-14.33 31.99-32 31.99s-32-14.3-32-31.99v-144H48c-17.67 0-32-14.32-32-32.01s14.33-31.99 32-31.99H192v-144c0-17.69 14.33-32.01 32-32.01s32 14.32 32 32.01v144h144C417.7 224 432 238.3 432 256z"/></svg>
-                 </div>
-                 <div class="total spacebtw_more" >
-                 $${item.inCart * item.price}.00
-                 </div>
-                
-                 `;
+    cartItems.map((item,index) => {
+      productContainer.innerHTML += 
+      
+      `  <div class="product">
+      <div class="product-image">
+         <img class="spacebtw"  src="./images/${item.tag}.png">
+      </div>
+      <div class="product-details">
+        <div class="product-title">${item.name}</div>
+        <p class="product-description">${item.tag}</p>
+      </div>
+      <div class="product-price">${item.price}</div>
+      <div class="product-quantity">
+        <p >Quantity:- ${item.inCart}</p>
+      </div>
+     
+      <div class="product-line-price">$${item.inCart * item.price}.00</div>
+    </div>
+    
+    
+
+    `
     });
-    totalPriceOfItem = cartCost;
-    productContainer.innerHTML += `
-        
-            <div class="basketTotalContainer">
-            <h4 class="basketTotalTitle">
-            Basket Total 
-            </h4>
-            <h4 class="basketTotal">
-            $${cartCost}.00
-            </h4>
-            </div>
-            <div  class="down" >
-           
-            </div>
-            `;
+    
   }
 }
 onLoadCartNumbers();
@@ -176,11 +159,19 @@ window.onclick = function (e) {
 };
 
 function remove() {
+  let removeProduct = document.getElementById("remove-product");
+  removeProduct.addEventListener('click', function(){
+
   localStorage.removeItem("cartNumbers");
   localStorage.removeItem("productInCart");
   localStorage.removeItem("totalCost");
-  displayCart();
   window.location.reload();
+  displayCart();
+})
+// let data = JSON.parse(localStorage.getItem("productInCart"))
+//           data.splice(index,1)
+//           localStorage.setItem('productIncart',JSON.stringify(data))
+//           window.location.reload()
 }
 
 function validCard() {
