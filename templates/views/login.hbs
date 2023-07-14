@@ -23,8 +23,10 @@
         </h1>
 
         {{#if error}}
-          <p style="color: red;">{{error}}</p>
-        {{/if}}
+<p style="color: red;">{{error}}</p>
+{{/if}}
+
+
 
         <div class="form-input">
           <form id="loginForm" action="/auth/signin" method="POST">
@@ -50,17 +52,36 @@
     </footer>
 
     <script>
-      document.getElementById("loginForm").addEventListener("submit", async
-      function(event) { event.preventDefault(); // Prevent the form from
-      submitting normally const email =
-      document.getElementById("emailInput").value; const password =
-      document.getElementById("passwordInput").value; try { const response =
-      await fetch("/auth/signin", { method: "POST", headers: { "Content-Type":
-      "application/json" }, body: JSON.stringify({ email, password }) }); if
-      (response.ok) { console.log(response) localStorage.setitem("email",
-      email); window.alert("Login successful!"); window.location.href = "/"; }
-      else { const error = await response.text(); window.alert(error); } } catch
-      (error) { console.log("An error occurred:", error); } });
+      document.getElementById("loginForm").addEventListener("submit", async function(event) {
+        event.preventDefault(); // Prevent the form from submitting normally
+    
+        const email = document.getElementById("emailInput").value;
+        const password = document.getElementById("passwordInput").value;
+        
+    
+        try {
+          const response = await fetch("/auth/signin", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ email, password })
+          });
+    
+          if (response.ok) {
+            console.log(response)
+            window.alert("Login successful!");
+            window.location.href = "/";
+          } else {
+            const error = await response.text();
+            window.alert(error);
+
+          }
+        } catch (error) {
+          console.log("An error occurred:", error);
+        } 
+      });
+
     </script>
   </body>
 

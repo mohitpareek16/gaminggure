@@ -38,7 +38,8 @@ const signIn = async (req, res) => {
     } else {
       const match = await bcrypt.compare(password, user.password);
       if (match) {
-        req.session.user = user;
+        req.session.userId = user._id;
+
         res.status(200).redirect('/');
       } else {
         res.status(401).render('login', { error: 'Invalid username or password.' });

@@ -37,7 +37,8 @@ app.use(
 );
 
 app.get("/", (req, res) => {
-  const isAuthenticated = req.session.user ? true : false;
+
+  const isAuthenticated = req.session.userId ? true : false;
   console.log(req.session.user,"isauthenticated")
 
   res.render("index",{ isAuthenticated });
@@ -47,6 +48,7 @@ app.get("/login", (req, res) => {
   res.render("login");
 });
 app.get("/booking", (req, res) => {
+  
   res.render("booking");
 });
 
@@ -54,7 +56,8 @@ app.get("/signin", (req, res) => {
   res.render("signin");
 });
 app.get("/tournamentpage", (req, res) => {
-  if (!req.session.user) {
+  if (!req.session.userId) {
+
     res.redirect('/login');
   } else {
     res.render('tournamentpage');
@@ -63,21 +66,27 @@ app.get("/tournamentpage", (req, res) => {
 });
 
 app.get("/cart", (req, res) => {
-  if (!req.session.user) {
+  if (!req.session.userId) {
+
     res.redirect('/login');
   } else {
     res.render('cart');
   }});
 
 app.get("/step3", (req, res) => {
-  res.render("step3");
+  const isAuthenticated = req.session.userId ? true : false;
+
+  res.render("step3",{isAuthenticated});
 });
 
 app.get("/payment", (req, res) => {
-  if (!req.session.user) {
+  if (!req.session.userId) {
     res.redirect('/login');
   } else {
-    res.render('payment');
+    const isAuthenticated = req.session.userId ? true : false;
+
+    res.render('payment',{ isAuthenticated });
+
   }
 });
 

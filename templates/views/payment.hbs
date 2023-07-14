@@ -23,9 +23,16 @@
             </li>
         </ul>
         <div class="nav-right">
-            <button id="login"><a class="lclick" href="/login">LOG IN</a></button>
-            <button id="signup"><a class="sclick" href="/signin">SIGN UP</a></button>
-            <button id="signup"><a class="sclick" href="/step3">Back</a></button>
+        {{#if isAuthenticated}}
+        <button id="logoutButton" onclick="{logoutUser}" class="loclick">Log Out
+        </button>
+
+          {{else}}
+          <button id="loginButton" class="lclick"><a href="/login">LOG IN</a></button>
+
+          <button id="signupButton" class="sclick"><a href="/signin">SIGN UP</a></button>
+          {{/if}}
+
         </div>
     </nav>
     <section>
@@ -62,7 +69,7 @@
                             Email
                             <input id="email" name="email" type="email" class='input-field'></input>
                             Amount
-                            <input id="amount" name="amount" type="number" class='input-field'></input>
+                            <input  id="amount" name="amount" type="number" class='input-field'></input>
                            
                             <table class='half-input-table'>
                                 <tr>
@@ -90,6 +97,8 @@
     <script src="js/cart.js"></script>
     
     <script>
+        var amount2 = document.getElementById('amount')
+              amount2.value = localStorage.getItem('totalCost')
         document.addEventListener('DOMContentLoaded', function () {
             var form = document.querySelector('.mainFromData');
             form.addEventListener('submit', function (event) {
@@ -100,6 +109,7 @@
               var phone_number = document.getElementById('phone_number').value;
               var expires = document.getElementById('expires').value;
               var cvc = document.getElementById('cvc').value;
+
               var amount = document.getElementById('amount').value;
               var email = document.getElementById('email').value;  
           
@@ -110,7 +120,7 @@
                 email: email,
                 expires: expires,
                 cvc: cvc,
-                amount: amount,
+                amount: amount.value,
               };
           
               // Send the AJAX request to the server
