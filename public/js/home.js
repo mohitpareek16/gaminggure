@@ -68,7 +68,12 @@ $$(".color-picker")[0].on("click", ".square", function (event, square) {
 
 // this section for the drop down
 
-var mList;
+var mList =  [
+  "SKILLS ASSESSMENT|SKILLS ASSESSMENT",
+  "ONE-ON-ONE TRAINING|ONE-ON-ONE TRAINING",
+  "TEAM SESSION|TEAM SESSION",
+];
+
 var opt;
 
 function populate(s1, s2) {
@@ -77,31 +82,33 @@ function populate(s1, s2) {
 
   s2.innerHTML = "";
 
-  if (s1.value == "FORTNITE") {
-    var optionArray = [
-      "SKILLS ASSESSMENT|SKILLS ASSESSMENT",
-      "ONE-ON-ONE TRAINING|ONE-ON-ONE TRAINING",
-      "TEAM SESSION|TEAM SESSION",
-    ];
+  var optionArray = [
+    "SKILLS ASSESSMENT|SKILLS ASSESSMENT",
+    "ONE-ON-ONE TRAINING|ONE-ON-ONE TRAINING",
+    "TEAM SESSION|TEAM SESSION",
+  ];
 
-    mList = optionArray;
-  } else if (s1.value == "LEAGUE OF LEGENDS") {
-    var optionArray = [
-      "SKILLS ASSESSMENT|SKILLS ASSESSMENT",
-      "ONE-ON-ONE TRAINING|ONE-ON-ONE TRAINING",
-      "TEAM SESSION|TEAM SESSION",
-    ];
+  // if (s1.value == "FORTNITE") {
+  //   
 
-    mList = optionArray;
-  } else if (s1.value == "DOTA 2") {
-    var optionArray = [
-      "SKILLS ASSESSMENT|SKILLS ASSESSMENT",
-      "ONE-ON-ONE TRAINING|ONE-ON-ONE TRAINING",
-      "TEAM SESSION|TEAM SESSION",
-    ];
+  //   mList = optionArray;
+  // } else if (s1.value == "LEAGUE OF LEGENDS") {
+  //   var optionArray = [
+  //     "SKILLS ASSESSMENT|SKILLS ASSESSMENT",
+  //     "ONE-ON-ONE TRAINING|ONE-ON-ONE TRAINING",
+  //     "TEAM SESSION|TEAM SESSION",
+  //   ];
 
-    mList = optionArray;
-  }
+  //   mList = optionArray;
+  // } else if (s1.value == "DOTA 2") {
+  //   var optionArray = [
+  //     "SKILLS ASSESSMENT|SKILLS ASSESSMENT",
+  //     "ONE-ON-ONE TRAINING|ONE-ON-ONE TRAINING",
+  //     "TEAM SESSION|TEAM SESSION",
+  //   ];
+
+  //   mList = optionArray;
+  // }
   for (var option in optionArray) {
     var pair = optionArray[option].split("|");
     var newoption = document.createElement("option");

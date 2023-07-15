@@ -19,7 +19,7 @@ const nodemailer = require('nodemailer');
 const createPayment = async (req, res) => {
   const paymentDataGet = req.body;
   const userEmail = req.body.email;
-  console.log(userEmail, "@+++++");
+  console.log(paymentDataGet);
   try {
     const paymentData = new PaymentModel(paymentDataGet);
     const savedPayment = await paymentData.save();
@@ -41,12 +41,13 @@ const createPayment = async (req, res) => {
       html: `
         <h1>Invoice</h1>
         <p>Thank you for your payment!</p>
-        <p>Amount: ${paymentDataGet?.amount}</p>
+        <p>Bill ID: ${Math.floor(Math.random() * Date.now()).toString(36)}</p>
+        <p>Amount: ₹${paymentDataGet?.amount}</p>
         <p>Card Number: ${paymentDataGet?.card_number}</p>
         <p>Card Holder: ${paymentDataGet?.card_holder}</p>
         <p>Phone Number: ${paymentDataGet?.phone_number}</p>
         <p>Expires: ${paymentDataGet?.expires}</p>
-        <p>CVC: ${paymentDataGet?.cvc}</p>
+        
       `,
     };
 

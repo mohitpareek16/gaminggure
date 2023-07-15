@@ -98,7 +98,7 @@ function displayCart() {
         <p >Quantity:- ${item.inCart}</p>
       </div>
      
-      <div class="product-line-price">$${item.inCart * item.price}.00</div>
+      <div class="product-line-price">${item.inCart * item.price}.00</div>
     </div>
     
     
