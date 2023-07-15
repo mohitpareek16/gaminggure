@@ -69,7 +69,7 @@
                             Email
                             <input id="email" name="email" type="email" class='input-field'></input>
                             Amount
-                            <input  id="amount" name="amount" type="number" class='input-field'></input>
+                            <input disabled  id="amount" name="amount" type="number" class='input-field'></input>
                            
                             <table class='half-input-table'>
                                 <tr>
@@ -97,8 +97,11 @@
     <script src="js/cart.js"></script>
     
     <script>
+        const totalElement = document.getElementById("cart-total");
+    const cartProd = JSON.parse(localStorage.getItem("productInCart"));
+    const cartTotal = cartProd.reduce((total, curr) => (total += curr.price), 0);
         var amount2 = document.getElementById('amount')
-              amount2.value = localStorage.getItem('totalCost')
+              amount2.value = cartTotal
         document.addEventListener('DOMContentLoaded', function () {
             var form = document.querySelector('.mainFromData');
             form.addEventListener('submit', function (event) {

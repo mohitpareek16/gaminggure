@@ -28,14 +28,14 @@ const createPayment = async (req, res) => {
     const transporter = nodemailer.createTransport({
       service: 'gmail', // e.g., Gmail, Outlook, etc.
       auth: {
-        user: 'anshulgupta19122001@gmail.com',
-        pass: 'whbribyzzxailvxk',
+        user: process.env.PUBLIC_SMTP_MAIL_TO,
+        pass: process.env.PUBLIC_SMTP_PASS,
       },
     });
 
     // Create the email content
     const mailOptions = {
-      from: "anshulgupta19122001@gmail.com",
+      from: process.env.PUBLIC_SMTP_MAIL_TO,
       to: userEmail,
       subject: 'Invoice for your payment',
       html: `

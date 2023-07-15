@@ -39,7 +39,6 @@ app.use(
 app.get("/", (req, res) => {
 
   const isAuthenticated = req.session.userId ? true : false;
-  console.log(req.session.user,"isauthenticated")
 
   res.render("index",{ isAuthenticated });
 });
@@ -48,8 +47,10 @@ app.get("/login", (req, res) => {
   res.render("login");
 });
 app.get("/booking", (req, res) => {
+  const isAuthenticated = req.session.userId ? true : false;
+
   
-  res.render("booking");
+  res.render("booking",{ isAuthenticated });
 });
 
 app.get("/signin", (req, res) => {

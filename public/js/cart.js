@@ -74,6 +74,22 @@ function totalCost(product) {
   }
 }
 
+function removeItem(index) {
+  let cartItems = localStorage.getItem("productInCart");
+  cartItems = JSON.parse(cartItems);
+
+  // Remove the item from the cartItems array
+  cartItems.splice(index, 1);
+
+  // Update the cartItems in localStorage
+  localStorage.setItem("productInCart", JSON.stringify(cartItems));
+
+  // Call the displayCart function again to update the displayed cart
+  displayCart();
+  window.location.reload()
+}
+
+
 function displayCart() {
   let cartItems = localStorage.getItem("productInCart");
   cartItems = JSON.parse(cartItems);
@@ -96,6 +112,10 @@ function displayCart() {
       <div class="product-price">${item.price}</div>
       <div class="product-quantity">
         <p >Quantity:- ${item.inCart}</p>
+      </div>
+
+      <div class="remove">
+        <button id="remove-product" onclick="removeItem(${index})">Remove</button>
       </div>
      
       <div class="product-line-price">${item.inCart * item.price}.00</div>
@@ -158,21 +178,7 @@ window.onclick = function (e) {
   }
 };
 
-function remove() {
-  let removeProduct = document.getElementById("remove-product");
-  removeProduct.addEventListener('click', function(){
 
-  localStorage.removeItem("cartNumbers");
-  localStorage.removeItem("productInCart");
-  localStorage.removeItem("totalCost");
-  window.location.reload();
-  displayCart();
-})
-// let data = JSON.parse(localStorage.getItem("productInCart"))
-//           data.splice(index,1)
-//           localStorage.setItem('productIncart',JSON.stringify(data))
-//           window.location.reload()
-}
 
 function validCard() {
   var cardNumber = document.getElementById("card_name").value;

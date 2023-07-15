@@ -155,6 +155,8 @@ function populate2(s1, s2) {
 function SelectRedirect() {
   // ON selection of section this function will work
   //alert( document.getElementById('s1').value);
+  const select1 = document.getElementById("slct1")
+
   let data = JSON.parse(localStorage.getItem('productInCart')?localStorage.getItem('productInCart'):'[]')
 
 
