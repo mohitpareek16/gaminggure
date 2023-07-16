@@ -22,9 +22,9 @@ for (let i = 0; i < carts.length; i++) {
   });
 }
 function onLoadCartNumbers() {
-  let productNumbers = localStorage.getItem("cartNumbers");
+  let productNumbers = localStorage.getItem("productInCart");
   if (productNumbers) {
-    document.querySelector(".nav-centre span").textContent = productNumbers;
+    document.querySelector(".nav-centre span").textContent = JSON.parse(productNumbers).length;
   }
 }
 
